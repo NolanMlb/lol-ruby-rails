@@ -1,0 +1,19 @@
+<%= form_with(model: team, local: true, class: "space-y-4") do |form| %>
+    <% if team.errors.any? %>
+      <div class="bg-red-100 text-red-700 p-4 rounded">
+        <h2 class="font-bold mb-2"><%= pluralize(team.errors.count, "erreur") %> :</h2>
+        <ul class="list-disc list-inside">
+          <% team.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div>
+      <%= form.label :name, "Nom de l'équipe", class: "block font-semibold" %>
+      <%= form.text_field :name, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <%= form.submit "💾 Enregistrer", class: "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" %>
+<% end %>

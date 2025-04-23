@@ -1,0 +1,33 @@
+<%= form_with(model: match, local: true, class: "space-y-4") do |form| %>
+    <div>
+      <%= form.label :team1_id, "Équipe 1", class: "block font-semibold" %>
+      <%= form.collection_select :team1_id, Team.all, :id, :name, prompt: "Sélectionner", class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <div>
+      <%= form.label :team2_id, "Équipe 2", class: "block font-semibold" %>
+      <%= form.collection_select :team2_id, Team.all, :id, :name, prompt: "Sélectionner", class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <div>
+      <%= form.label :score_team1, "Score Équipe 1", class: "block font-semibold" %>
+      <%= form.number_field :score_team1, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <div>
+      <%= form.label :score_team2, "Score Équipe 2", class: "block font-semibold" %>
+      <%= form.number_field :score_team2, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <div>
+      <%= form.label :result, "Résultat", class: "block font-semibold" %>
+      <%= form.text_field :result, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <div>
+      <%= form.label :date, "Date", class: "block font-semibold" %>
+      <%= form.datetime_select :date, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <%= form.submit "💾 Enregistrer", class: "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" %>
+  <% end %>

@@ -1,0 +1,17 @@
+<h1 class="text-2xl font-bold mb-4">Matchs</h1>
+
+<%= link_to '➕ Nouveau match', new_match_path, class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+
+<ul class="mt-6 space-y-3">
+  <% @matches.each do |match| %>
+    <li class="bg-white p-4 rounded shadow">
+      <div class="text-lg font-semibold">
+        <%= match.team1.name %> vs <%= match.team2.name %>
+      </div>
+      <div class="text-sm text-gray-600">
+        Résultat : <%= match.result %> | Score : <%= match.score_team1 %> - <%= match.score_team2 %><br>
+        Date : <%= match.date.strftime("%d/%m/%Y") %>
+      </div>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,16 @@
+<h1 class="text-3xl font-bold mb-6">Bienvenue sur le gestionnaire de tournoi LoL</h1>
+
+<h2 class="text-xl font-semibold mb-4">5 derniers matchs</h2>
+<ul class="space-y-3">
+  <% @last_matches.each do |match| %>
+    <li class="bg-white p-4 rounded-lg shadow-md">
+      <div class="font-bold text-lg">
+        <%= match.team1.name %> vs <%= match.team2.name %>
+      </div>
+      <div class="text-sm text-gray-600">
+        Score : <%= match.score_team1 %> - <%= match.score_team2 %> • <%= match.result %><br>
+        Joué le <%= match.date.strftime("%d/%m/%Y") %>
+      </div>
+    </li>
+  <% end %>
+</ul>

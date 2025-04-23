@@ -1,0 +1,17 @@
+<div class="bg-white p-6 rounded-lg shadow max-w-xl mx-auto">
+  <h1 class="text-2xl font-bold mb-4">
+    <%= @player.first_name %> <%= @player.last_name %>
+  </h1>
+
+  <p class="mb-2"><span class="font-semibold">Rôle :</span> <%= @player.role %></p>
+  <p class="mb-6"><span class="font-semibold">Équipe :</span>
+    <%= link_to @player.team.name, team_path(@player.team), class: "text-blue-600 hover:underline" %>
+  </p>
+
+  <div class="flex gap-4">
+    <%= link_to '✏️ Modifier', edit_player_path(@player), class: "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" %>
+    <%= link_to '🗑️ Supprimer', player_path(@player), method: :delete, data: { confirm: 'Supprimer ce joueur ?' },
+                class: "bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" %>
+    <%= link_to '⬅️ Retour à l\'équipe', team_path(@player.team), class: "text-blue-600 hover:underline self-center" %>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<h1 class="text-2xl font-bold mb-6">Liste des joueurs</h1>
+
+<table class="min-w-full bg-white shadow rounded overflow-hidden">
+  <thead class="bg-gray-100 text-left text-sm uppercase text-gray-600">
+    <tr>
+      <th class="px-6 py-3">Nom</th>
+      <th class="px-6 py-3">Prénom</th>
+      <th class="px-6 py-3">Rôle</th>
+      <th class="px-6 py-3">Équipe</th>
+      <th class="px-6 py-3 text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200">
+    <% @players.each do |player| %>
+      <tr>
+        <td class="px-6 py-4"><%= player.last_name %></td>
+        <td class="px-6 py-4"><%= player.first_name %></td>
+        <td class="px-6 py-4"><%= player.role %></td>
+        <td class="px-6 py-4">
+          <%= link_to player.team.name, team_path(player.team), class: "text-blue-600 hover:underline" %>
+        </td>
+        <td class="px-6 py-4 flex justify-center gap-2">
+          <%= link_to '👁️', player_path(player), class: "text-blue-500 hover:underline text-sm" %>
+          <%= link_to '✏️', edit_player_path(player), class: "text-yellow-500 hover:underline text-sm" %>
+          <%= link_to '🗑️', player_path(player), method: :delete, data: { confirm: "Supprimer ce joueur ?" },
+                      class: "text-red-600 hover:underline text-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

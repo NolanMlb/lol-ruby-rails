@@ -1,0 +1,5 @@
+<h1 class="text-2xl font-bold mb-4">Modifier le joueur : <%= @player.first_name %> <%= @player.last_name %></h1>
+
+<%= render 'form', player: @player %>
+
+<%= link_to '⬅️ Retour', player_path(@player), class: "text-blue-600 hover:underline mt-4 inline-block" %>

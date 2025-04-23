@@ -1,0 +1,26 @@
+<h1 class="text-2xl font-bold mb-4"><%= @team.name %></h1>
+
+<h2 class="text-lg font-semibold mb-2">Joueurs de l’équipe</h2>
+<% if @team.players.any? %>
+  <ul class="space-y-2 mb-6">
+    <% @team.players.each do |player| %>
+      <li class="bg-white p-3 rounded shadow flex justify-between items-center">
+        <span><%= "#{player.first_name} #{player.last_name} (#{player.role})" %></span>
+        <%= link_to '👁️ Voir joueur', player_path(player),
+            method: :show,
+            data: { confirm: 'Voir ce joueur ?' },
+            class: "text-blue-600 hover:underline text-sm" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="text-gray-600 mb-6">Aucun joueur dans cette équipe.</p>
+<% end %>
+
+<div class="flex gap-4 mb-6">
+  <%= link_to '➕ Ajouter un joueur', new_team_player_path(@team), class: "bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" %>
+  <%= link_to '✏️ Modifier équipe', edit_team_path(@team), class: "bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" %>
+  <%= link_to '🗑️ Supprimer équipe', team_path(@team), method: :delete, data: { confirm: 'Supprimer cette équipe ?' }, class: "bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700" %>
+</div>
+
+<%= link_to '⬅️ Retour à la liste des équipes', teams_path, class: "text-blue-600 hover:underline" %>

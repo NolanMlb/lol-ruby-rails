@@ -1,0 +1,18 @@
+<%= form_with(model: [@team, player], local: true, class: "space-y-4") do |form| %>
+    <div>
+      <%= form.label :first_name, "Prénom", class: "block font-semibold" %>
+      <%= form.text_field :first_name, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <div>
+      <%= form.label :last_name, "Nom", class: "block font-semibold" %>
+      <%= form.text_field :last_name, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <div>
+      <%= form.label :role, "Rôle", class: "block font-semibold" %>
+      <%= form.select :role, Player::ROLES, {}, class: "w-full border p-2 rounded" %>
+    </div>
+  
+    <%= form.submit "💾 Enregistrer", class: "bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" %>
+  <% end %>
