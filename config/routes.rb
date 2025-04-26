@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "rankings/index"
   get "home/index"
   # Define the root path to show the home page
   root "home#index"
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   
   # Routes for managing matches between teams
   resources :matches
+
+  get "classement", to: "rankings#index"
 
   # Additional route to home page
   get "home", to: "home#index" 

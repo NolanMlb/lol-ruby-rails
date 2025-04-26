@@ -14,3 +14,26 @@
     </li>
   <% end %>
 </ul>
+
+<h2 class="text-xl font-semibold mt-10 mb-4">Classement des équipes 🏆</h2>
+
+<table class="min-w-full bg-white shadow rounded overflow-hidden">
+  <thead class="bg-gray-100 text-left text-sm uppercase text-gray-600">
+    <tr>
+      <th class="px-6 py-3">#</th>
+      <th class="px-6 py-3">Équipe</th>
+      <th class="px-6 py-3">Victoires</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y divide-gray-200">
+    <% @ranked_teams.each_with_index do |team, index| %>
+      <tr>
+        <td class="px-6 py-4"><%= index + 1 %></td>
+        <td class="px-6 py-4">
+          <%= link_to team.name, team_path(team), class: "text-blue-600 hover:underline" %>
+        </td>
+        <td class="px-6 py-4"><%= team.victories_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
