@@ -1,15 +1,15 @@
 # LoL Tournament Manager
 
 Application de gestion de tournois League of Legends développée en Ruby on Rails.  
-Elle permet la création d’équipes, l’ajout de joueurs, la gestion de matchs et l’affichage d’un classement dynamique basé sur les résultats.
+Elle permet la création d'équipes, l'ajout de joueurs, la gestion de matchs et l'affichage d'un classement dynamique basé sur les résultats.
 
 ## Fonctionnalités
 
-- Création, modification et suppression d’équipes
+- Création, modification et suppression d'équipes
 - Ajout et gestion de joueurs par équipe (maximum 5 joueurs par équipe)
 - Création et historique de matchs entre équipes
 - Calcul automatique des victoires et classement des équipes
-- Affichage des 5 derniers matchs sur la page d’accueil
+- Affichage des 5 derniers matchs sur la page d'accueil
 - Interface stylisée avec Tailwind CSS
 
 ## Installation
@@ -47,13 +47,13 @@ rails db:create db:migrate db:seed
 bin/dev
 ```
 
-> Si `bin/dev` n’est pas disponible, lancer séparément :
+> Si `bin/dev` n'est pas disponible, lancer séparément :
 >
 > ```bash
 > rails server
 > ```
 
-5. Accéder à l’application :
+5. Accéder à l'application :
 
 Naviguer vers `http://localhost:3000`
 
@@ -61,11 +61,81 @@ Naviguer vers `http://localhost:3000`
 
 | Fonction       | Route         |
 | -------------- | ------------- |
-| Page d’accueil | `/`           |
+| Page d'accueil | `/`           |
 | Équipes        | `/teams`      |
 | Joueurs        | `/players`    |
 | Matchs         | `/matches`    |
 | Classement     | `/classement` |
+
+## Modèles
+
+L'application utilise trois modèles principaux :
+
+### Team (Équipe)
+
+- Représente une équipe de League of Legends
+- Contient un nom unique
+- Peut avoir jusqu'à 5 joueurs maximum
+- Possède une méthode `victories_count` pour calculer le nombre de victoires
+- Relations :
+  - `has_many :players` (une équipe peut avoir plusieurs joueurs)
+
+### Player (Joueur)
+
+- Représente un joueur de League of Legends
+- Attributs :
+  - Prénom
+  - Nom
+  - Rôle (Top laner, Jungler, Mid laner, ADC, Support)
+- Relations :
+  - `belongs_to :team` (un joueur appartient à une équipe)
+
+### Match
+
+- Représente un match entre deux équipes
+- Attributs :
+  - Date
+  - Score de l'équipe 1
+  - Score de l'équipe 2
+- Relations :
+  - `belongs_to :team1` (première équipe)
+  - `belongs_to :team2` (deuxième équipe)
+- Validation : les deux équipes doivent avoir au moins un joueur
+
+## Dépendances principales
+
+### Backend
+
+- Ruby on Rails 8.0.2
+- PostgreSQL (base de données)
+- Puma (serveur web)
+- Propshaft (pipeline d'assets)
+- Importmap-rails (gestion des imports JavaScript)
+- Turbo-rails (accélérateur de pages SPA)
+- Stimulus-rails (framework JavaScript modeste)
+- Jbuilder (construction d'APIs JSON)
+- Solid Cache (cache)
+- Solid Queue (file d'attente)
+- Solid Cable (WebSocket)
+
+### Frontend
+
+- Tailwind CSS 4.2 (framework CSS)
+- Turbo / Hotwire (interactivité)
+- Stimulus (JavaScript)
+
+### Développement
+
+- Debug (débogage)
+- Brakeman (analyse de sécurité)
+- Rubocop (linter Ruby)
+- Web Console
+- Foreman (gestion des processus)
+
+### Test
+
+- Capybara (tests système)
+- Selenium WebDriver (tests navigateur)
 
 ## Technologies utilisées
 
@@ -82,4 +152,4 @@ Naviguer vers `http://localhost:3000`
 
 ## Auteur
 
-Projet réalisé par Nolan Malherbe / Développeur(se) dans le cadre d’un exercice de gestion d'application web.
+Projet réalisé par Nolan Malherbe / Développeur(se) dans le cadre d'un exercice de gestion d'application web.
